@@ -1,0 +1,21 @@
+{
+  "name": "devconnect",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "nodejs",
+    "backend"
+  ],
+  "license": "ISC",
+  "author": "Lenka Prasanth Kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node src/app.js",
+    "dev" : "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
