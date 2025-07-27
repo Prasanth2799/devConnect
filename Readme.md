@@ -7,3 +7,4 @@
 -Install nodemon
 -Create a database in config file with Mongoose.
 -Used Jwt for the auth and bcrypt for hasing passwords.
+-Implemented Middlewares
