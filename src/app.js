@@ -1,17 +1,24 @@
 const express = require("express");
+const {connectDB} = require("./config/database")
 const app = express();
+const cookieParser = require("cookie-parser")
+app.use(express.json())
+app.use(cookieParser())
 
-const {adminAuth, userAuth} = require("./middlewares/auth")
-app.use("/admin", adminAuth)
-app.get("/user/getUserData", userAuth, (req,res) => {
-    res.send("Get user data")
-})
-app.get("/admin/getData", (req,res) => {
-    res.send("Data received")
-})
-app.delete("/admin/deleteData", (req,res) => {
-    res.send("Data deleted")
-})
-app.listen(9999, () => {
-    console.log("Server is running on the port 9999")
-})
+const authRouter  = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const requestRouter = require("./routes/request")
+
+app.use("/", authRouter, profileRouter, requestRouter)
+
+
+connectDB()
+ .then(() => {
+    console.log("Database connection established...")
+    app.listen(9999, () => {
+        console.log("Server is running on the port 9999")
+    })
+ })
+ .catch((err) => {
+    console.log("Database connection not established..."+err.message )
+ }) 
