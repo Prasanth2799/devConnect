@@ -4,3 +4,4 @@
 - Initialize git
 - Install Express Server (npm i express)
 - Install nodemon (npm i -g nodemon)
+- Tested dummy middlewares in Postman.
