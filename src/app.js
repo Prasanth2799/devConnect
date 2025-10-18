@@ -1,17 +1,24 @@
 const express = require("express");
 const app = express();
 const port = 9999;
-//order os the middleware matters
-app.use("/", (req,res) => {
-    res.send("Hello world")
+
+app.get("/user", (req,res) => {
+    res.send(
+        {
+            firstName : "Prasanth",
+            lastName : "Kumar"
+        }
+    )
 })
 
-app.use("/test", (req,res) => {
-    res.send("Test")
+app.post("/user", (req,res) => {
+    res.send("User saved Successfully!!!!")
 })
-app.use("/hello", (req,res) => {
-    res.send("Hello Hello Hello")
+
+app.delete("/user", (req,res) => {
+    res.send("User deleted successfully!!!!")
 })
+
 
 
 app.listen(port, () => {
