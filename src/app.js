@@ -1,25 +1,28 @@
 const express = require("express");
-const {adminAuth} = require("./middlewares/auth")
 const app = express();
 const port = 9999;
+const {connectDB} = require("./config/database")
+require("dotenv").config(); // Load .env variables
+const User = require("./models/user");
 
-app.get("/getUserData", (req,res) => {
-    try{
-        throw new Error("Error")
-        res.send("User data sent")
-    }
-    catch(err){
-        res.status(500).send("Error: contact support team")
-    }
-
+app.post("/signup", async (req, res) => {
+        const user = new User({
+                firstName : "Lenka",
+                lastName : "Prasanth",
+                emailId : "pra@gmail.com",
+                gender : "Male"
+        })
+        await user.save();
+        res.send("User saved successfully")
 })
-app.use("/", (err,req,res,next) => {
-    if(err){
-        res.status(500).send("Something went wrong")
-    }
-})
-
-
-app.listen(port, () => {
-    console.log(`Server is successfully listening on port ${port}`)
-})
+connectDB()
+ .then(() => {
+    console.log("Database connection established successfully")
+    app.listen(port, () => {
+        console.log(`Server is successfully listening on port ${port}`)
+    })
+ })
+ .catch((err) => {
+    console.error("Database connection failed", err)
+ })
+ 
