@@ -38,14 +38,23 @@ app.get("/feed", async (req,res) => {
             console.error("Something went wrong"+err.message)
         }
 })
-app.patch("/user", async (req,res) => {
+app.patch("/user/:userId", async (req,res) => {
+        const userId = req.params?.userId
         const data = req.body
         try{
-            const user = await User.findByIdAndUpdate({_id: req.body.userId}, data, {returnDocument: "before"})
+            const updateFields = ["photoUrl", "gender", "skills", "age", "about"]
+            const isUpdateAllowed = Object.keys(data).every(key => updateFields.includes(key))
+            if(!isUpdateAllowed){
+                throw new Error("Update not allowed")
+            }
+            const totalSkills = 10
+            if(data?.skills.length > totalSkills){
+                throw new Error(`Number of skills should not be more than ${totalSkills}`)
+            }
+            const user = await User.findByIdAndUpdate({_id: userId}, data, {returnDocument: "after", runValidators : true})
             res.send(user)
-            console.log(user)
         }catch(err){
-            res.status(400).send("User not found")
+            res.status(400).send("Can't update the user: "+err.message)
         }
 })
 connectDB()
