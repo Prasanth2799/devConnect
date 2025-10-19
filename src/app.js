@@ -2,20 +2,44 @@ const express = require("express");
 const app = express();
 const port = 9999;
 const {connectDB} = require("./config/database")
+const {validateSignUpData} = require("./utils/validate")
+const bcrypt = require("bcrypt");
 require("dotenv").config(); // Load .env variables
 const User = require("./models/user");
 app.use(express.json())
 
 app.post("/signup", async (req, res) => {
-        const user = new User(req.body)
         try{
+             validateSignUpData(req)
+            const {firstName, lastName, emailId, password} = req.body
+            const passwordHash = await bcrypt.hash(password, 10);
+            const user = new User({
+                firstName, lastName, emailId, password: passwordHash
+            })
             await user.save()
             res.send("User added successfully")
         }
         catch(err){
-            res.status(400).send("Failed to add User "+err.message)
+            res.status(400).send("Failed to add User: "+err.message)
         }
         
+})
+app.post("/login", async (req,res) => {
+        try{
+            const{emailId, password} = req.body;
+            const user = await User.findOne({emailId : emailId})
+            if(!user){
+                throw new Error("Please enter valid credentials")
+            }
+            const isValidPassword = await bcrypt.compare(password, user.password)
+            if(isValidPassword){
+                res.send("Login successfully")
+            }else{
+                res.status(400).send("Invalid credentials")
+            }
+        }catch(err){
+            res.status(400).send("Login Failed: "+err.message)
+        }
 })
 app.get("/user", async (req,res) => {
         const email = req.body
