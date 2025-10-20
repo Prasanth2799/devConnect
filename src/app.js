@@ -7,6 +7,8 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 require("dotenv").config(); // Load .env variables
 const User = require("./models/user");
+const jwt = require("jsonwebtoken");
+const {userAuth} = require("./middlewares/auth")
 app.use(express.json())
 app.use(cookieParser());
 
@@ -35,7 +37,8 @@ app.post("/login", async (req,res) => {
             }
             const isValidPassword = await bcrypt.compare(password, user.password)
             if(isValidPassword){
-                res.cookie("token", "sdfafdsifnsflsdfbsdfdsflh")
+                const token = jwt.sign({_id : user?._id}, process.env.JWT_SECRET_KEY)
+                res.cookie("token", token)
                 res.send("Login successfully")
             }else{
                 res.status(400).send("Invalid credentials")
@@ -44,32 +47,21 @@ app.post("/login", async (req,res) => {
             res.status(400).send("Login Failed: "+err.message)
         }
 })
-app.get("/profile", async (req,res) => {
-    const cookies = req.cookies;
-    console.log(cookies)
-    res.send("Reading Cookies")
-})
-app.get("/user", async (req,res) => {
-        const email = req.body
-        try{
-            const user = await User.findOne(email)
-            res.send(user)
-        }catch(err){
-            res.status(400).send("Can't find that user ", err)
+app.get("/profile", userAuth, async (req,res) => {
+    try{
+        const user = req.user;
+        if(!user){
+            throw new Error("User not found")
         }
+        res.send(user)
+
+        
+    }
+    catch(err){
+        res.status(400).send("ERROR: "+err.message)
+    }
 })
-app.get("/feed", async (req,res) => {
-        try{
-            const users = await User.find({})
-            if(users.length === 0){
-                res.status(400).send("Users not found")
-            }else{
-                res.send(users)
-            }
-        }catch(err){
-            console.error("Something went wrong"+err.message)
-        }
-})
+
 app.patch("/user/:userId", async (req,res) => {
         const userId = req.params?.userId
         const data = req.body
