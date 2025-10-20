@@ -4,9 +4,11 @@ const port = 9999;
 const {connectDB} = require("./config/database")
 const {validateSignUpData} = require("./utils/validate")
 const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
 require("dotenv").config(); // Load .env variables
 const User = require("./models/user");
 app.use(express.json())
+app.use(cookieParser());
 
 app.post("/signup", async (req, res) => {
         try{
@@ -33,6 +35,7 @@ app.post("/login", async (req,res) => {
             }
             const isValidPassword = await bcrypt.compare(password, user.password)
             if(isValidPassword){
+                res.cookie("token", "sdfafdsifnsflsdfbsdfdsflh")
                 res.send("Login successfully")
             }else{
                 res.status(400).send("Invalid credentials")
@@ -40,6 +43,11 @@ app.post("/login", async (req,res) => {
         }catch(err){
             res.status(400).send("Login Failed: "+err.message)
         }
+})
+app.get("/profile", async (req,res) => {
+    const cookies = req.cookies;
+    console.log(cookies)
+    res.send("Reading Cookies")
 })
 app.get("/user", async (req,res) => {
         const email = req.body
