@@ -35,10 +35,10 @@ app.post("/login", async (req,res) => {
             if(!user){
                 throw new Error("Please enter valid credentials")
             }
-            const isValidPassword = await bcrypt.compare(password, user.password)
+            const isValidPassword = await user.validatePassword(password)
             if(isValidPassword){
-                const token = jwt.sign({_id : user?._id}, process.env.JWT_SECRET_KEY)
-                res.cookie("token", token)
+                const token = await user.getJWT();
+                res.cookie("token", token, { expires : new Date(Date.now() + 4 * 24 * 60 * 60 * 1000)})
                 res.send("Login successfully")
             }else{
                 res.status(400).send("Invalid credentials")
@@ -61,25 +61,13 @@ app.get("/profile", userAuth, async (req,res) => {
         res.status(400).send("ERROR: "+err.message)
     }
 })
-
-app.patch("/user/:userId", async (req,res) => {
-        const userId = req.params?.userId
-        const data = req.body
-        try{
-            const updateFields = ["photoUrl", "gender", "skills", "age", "about"]
-            const isUpdateAllowed = Object.keys(data).every(key => updateFields.includes(key))
-            if(!isUpdateAllowed){
-                throw new Error("Update not allowed")
-            }
-            const totalSkills = 10
-            if(data?.skills.length > totalSkills){
-                throw new Error(`Number of skills should not be more than ${totalSkills}`)
-            }
-            const user = await User.findByIdAndUpdate({_id: userId}, data, {returnDocument: "after", runValidators : true})
-            res.send(user)
-        }catch(err){
-            res.status(400).send("Can't update the user: "+err.message)
-        }
+app.post("/sendConnectionRequest", userAuth, async (req,res) => {
+    try{
+        const {firstName, lastName} = req.user;
+        res.send(firstName+" "+lastName+" sent connection request.")
+    }catch(err){
+        res.status(400).send("ERROR: "+err.message)
+    }
 })
 connectDB()
  .then(() => {
