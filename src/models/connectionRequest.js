@@ -1,6 +1,6 @@
-const { mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 
-const connectionRequestSchema = new mongoose.schema({
+const connectionRequestSchema = new mongoose.Schema({
     fromUserId : {
         type : mongoose.Schema.Types.ObjectId
     },
@@ -16,4 +16,4 @@ const connectionRequestSchema = new mongoose.schema({
     }
 }, { timeStamps: true})
 const ConnectionRequestModel = mongoose.model("ConnectionRequest", connectionRequestSchema)
-module.exports = {connectionRequestModel}
+module.exports = {ConnectionRequestModel}
