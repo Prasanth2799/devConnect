@@ -14,7 +14,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res) 
         }
         const toUser = await user.findById(toUserId)
         if(!toUser){
-            return res.status(400).send("User not found!")
+            return res.status(404).send("User not found!")
         }
         const isConnectionRequestExist = await ConnectionRequest.findOne({
             $or: [
