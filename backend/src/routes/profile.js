@@ -22,7 +22,6 @@ profileRouter.post("/profile/edit", userAuth, async (req,res) => {
             throw new Error("Invalid edit request")
         }
         const loggedInUser = req.user
-        console.log(loggedInUser)
         Object.keys(req.body).forEach(field => loggedInUser[field] = req.body[field])
         await loggedInUser.save();
         res.json({
