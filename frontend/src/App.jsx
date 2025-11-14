@@ -1,14 +1,13 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Body from "./components/Body/Body";
-import Login from "./components/Login/Login";
+import Body from "./components/Body";
 function App() {
   return (
     <>
     <BrowserRouter basename="/">
      <Routes>
-       <Route path="/" element={<Body />}>
-        <Route path="/login" element={<Login />}/>
-       </Route>
+      <Route path="/" element={<Body />}>
+       <Route path="/login" element={<div>Login</div>}/>
+      </Route>
      </Routes>
     </BrowserRouter>
     </>
