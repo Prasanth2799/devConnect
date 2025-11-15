@@ -8,7 +8,7 @@ profileRouter.get("/profile", userAuth, async (req,res) => {
         if(!user){
             throw new Error("User not found")
         }
-        res.send(user)
+        res.send({user: user})
 
         
     }

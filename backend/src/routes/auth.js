@@ -30,7 +30,7 @@ authRouter.post("/login", async (req,res) => {
             if(isValidPassword){
                 const token = await user.getJWT();
                 res.cookie("token", token, { expires : new Date(Date.now() + 4 * 24 * 60 * 60 * 1000)})
-                res.send("Login successfully")
+                res.json({message : "Login successful", user})
             }else{
                 res.status(400).send("Invalid credentials")
             }

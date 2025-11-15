@@ -1,4 +1,6 @@
+import {useSelector} from "react-redux";
 const Navbar = () => {
+  const user = useSelector()
   return (
     <div className="navbar bg-base-100 shadow-sm">
   <div className="flex-1">
