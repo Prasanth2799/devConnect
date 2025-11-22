@@ -4,7 +4,7 @@ const {userAuth} = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 const USER_SAFE_DATA = "firstName lastName age gender skills photoUrl about"
-userRouter.post("/user/requests/received", userAuth, async (req,res) => {
+userRouter.get("/user/requests/received", userAuth, async (req,res) => {
     try{
         const loggedInUser = req.user;
         const connectionRequests = await ConnectionRequest.find({
@@ -19,7 +19,7 @@ userRouter.post("/user/requests/received", userAuth, async (req,res) => {
         res.status(400).send("ERROR: "+err.message);
     }
 })
-userRouter.post("/user/connections", userAuth, async (req,res) => {
+userRouter.get("/user/connections", userAuth, async (req,res) => {
     try{
         const loggedInUser = req.user;
         const connectionRequests = await ConnectionRequest.find({

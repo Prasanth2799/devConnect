@@ -41,7 +41,8 @@ const Navbar = () => {
             Profile
           </Link>
         </li>
-        <li><a>Settings</a></li>
+        <li><Link to="/user/connections">Connections</Link></li>
+        <li><Link to="/requests/received">Request Connections</Link></li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>
