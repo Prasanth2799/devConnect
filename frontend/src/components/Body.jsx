@@ -4,14 +4,14 @@ import Footer from "./Footer"
 import { useEffect } from "react"
 import axios from "axios";
 import {BASE_URL} from "../utils/constants";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addUser} from "../store/userSlice";
 const Body = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const fetchUser = async () => {
     try{
-      const res = await axios.get(BASE_URL+"/profile", {withCredentials: true})
+      const res = await axios.get(BASE_URL+"/profile/view", {withCredentials: true})
       dispatch(addUser(res?.data?.user))
     }catch(err){
       if(err.response.status === 401){

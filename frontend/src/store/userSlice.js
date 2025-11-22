@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
     name : "user",
-    initialState : [],
+    initialState : null,
     reducers : {
         addUser : (state, action) =>  action.payload,
-        removeUser : (state, action) => null
+        removeUser : (state, action) =>  null
     }
 })
 export const {addUser, removeUser} = userSlice.actions;

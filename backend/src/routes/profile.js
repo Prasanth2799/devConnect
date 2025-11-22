@@ -2,13 +2,13 @@ const express = require("express");
 const profileRouter = express.Router();
 const {userAuth} = require("../middlewares/auth");
 const { validateUpdateFieldsData } = require("../utils/validate");
-profileRouter.get("/profile", userAuth, async (req,res) => {
+profileRouter.get("/profile/view", userAuth, async (req,res) => {
     try{
         const user = req.user;
         if(!user){
             throw new Error("User not found")
         }
-        res.send({user: user})
+        res.json({user: user})
 
         
     }
@@ -16,10 +16,10 @@ profileRouter.get("/profile", userAuth, async (req,res) => {
         res.status(400).send("ERROR: "+err.message)
     }
 })
-profileRouter.post("/profile/edit", userAuth, async (req,res) => {
+profileRouter.patch("/profile/edit", userAuth, async (req,res) => {
     try{
         if(!validateUpdateFieldsData(req)){
-            throw new Error("Invalid edit request")
+            return res.status(400).send("Invalid edit request")
         }
         const loggedInUser = req.user
         Object.keys(req.body).forEach(field => loggedInUser[field] = req.body[field])

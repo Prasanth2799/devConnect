@@ -1,15 +1,17 @@
 const express = require("express");
+const {connectDB} = require("./config/database")
 const app = express();
+const cookieParser = require("cookie-parser");
 const cors = require("cors")
 const port = 9999;
-const {connectDB} = require("./config/database")
-const cookieParser = require("cookie-parser");
-require("dotenv").config(); // Load .env variables
-app.use(express.json())
+require("dotenv").config(); 
 app.use(cors({
    origin : "http://localhost:5173",
-   credentials : true
+   credentials : true,
 }))
+app.use(express.json())
+// Load .env variables
+
 app.use(cookieParser());
 
 

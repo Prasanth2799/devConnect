@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Feed from "./components/Feed";
 import {Provider} from "react-redux";
 import appStore from "./store/appStore";
+import Profile from "./components/Profile";
 function App() {
   return (
     <Provider store={appStore}>
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Body />}>
        <Route path="/login" element={<Login />}/>
        <Route path="/feed" element={<Feed />}/>
+       <Route path="/profile" element={<Profile />}/>
       </Route>
      </Routes>
     </BrowserRouter>
