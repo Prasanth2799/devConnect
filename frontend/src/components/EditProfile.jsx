@@ -33,9 +33,9 @@ const EditProfile = ({user}) => {
     }
   }
   return (
-    <div className="flex justify-center my-6">
+    <div className="flex justify-center my-10">
         <div className="flex justify-center mx-10">
-            <div className="card bg-base-300 mr-6 rounded-lg shadow-lg p-3">
+            <div className="card bg-base-300 w-80 mr-2 shadow-xl">
   <div className="card-body items-center">
     <h2 className="card-title">Edit Profile</h2>
     <label className="floating-label">

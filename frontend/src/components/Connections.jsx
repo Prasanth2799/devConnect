@@ -20,16 +20,16 @@ const Connections = () => {
   if(!userConnections) return;
   if(userConnections.length === 0) return <h1 className="p-4 text-center">No Connections</h1>
   return (
-    <div className="p-4 text-center">
+    <div className="my-10 text-center">
       <h1>Connections</h1>
       {userConnections?.map((connection,index) => {
         const {firstName, lastName, photoUrl, about, _id, age, gender} = connection;
         return(
-          <div className="bg-base-300 items-center flex p-4 m-4 w-1/2 mx-auto rounded" key={_id}>
+          <div className="bg-base-300 flex p-4 m-4 w-1/2 mx-auto rounded" key={_id}>
             <div>
-              <img src={photoUrl} alt="user-photo" className="h-16 rounded-4xl mr-4"/>
+              <img src={photoUrl} alt="user-photo" className="h-20 w-20 rounded-full"/>
             </div>
-            <div className="text-left">
+            <div className="text-left mx-4">
               <h1>{firstName +" "+lastName}</h1>
               <p>{age && gender && <p>{age + " "+gender}</p> || gender && <p>{gender}</p> || age && <p>{age}</p>}</p>
             </div>

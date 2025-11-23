@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
   <div className="flex-1">
-    <Link to="/feed" className="btn btn-ghost text-xl">Dev Connect</Link>
+    <Link to="/" className="btn btn-ghost text-xl">Dev Connect</Link>
   </div>
 {user && (
 <div className="flex gap-2">
@@ -42,7 +42,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li><Link to="/user/connections">Connections</Link></li>
-        <li><Link to="/requests/received">Request Connections</Link></li>
+        <li><Link to="/requests/received">Requests</Link></li>
         <li><a onClick={handleLogout}>Logout</a></li>
       </ul>
     </div>

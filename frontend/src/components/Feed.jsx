@@ -8,6 +8,7 @@ const Feed = () => {
   const feed = useSelector(store => store.feed);
   const dispatch = useDispatch();
   const fetchFeed = async () => {
+    if(feed) return
     try{
       const res = await axios.get(BASE_URL+"/feed",  {withCredentials : true})
       dispatch(addFeed(res?.data?.data))
@@ -18,12 +19,14 @@ const Feed = () => {
   useEffect(() => {
     fetchFeed()
   },[])
+  if(!feed) return;
+  if(feed.length <= 0) return <h1 className="text-center">No Feed</h1>
   return (
     <>
-    {feed && 
-    <div className="flex justify-center my-16">
+    feed && 
+    (<div className="flex justify-center my-16">
       <UserCard userData={feed[0]}/>
-    </div>}
+    </div>)
     </>
   )
 }
