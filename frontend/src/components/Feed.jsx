@@ -23,10 +23,10 @@ const Feed = () => {
   if(feed.length <= 0) return <h1 className="text-center">No Feed</h1>
   return (
     <>
-    feed && 
-    (<div className="flex justify-center my-16">
-      <UserCard userData={feed[0]}/>
-    </div>)
+  {feed && 
+  (<div className="flex justify-center my-16">
+    <UserCard userData={feed[0]}/>
+  </div>)}
     </>
   )
 }
