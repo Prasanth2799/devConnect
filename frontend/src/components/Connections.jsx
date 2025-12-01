@@ -22,12 +22,14 @@ const Connections = () => {
   return (
     <div className="my-10 text-center">
       <h1>Connections</h1>
-      {userConnections?.map((connection,index) => {
+      {userConnections?.map((connection) => {
         const {firstName, lastName, photoUrl, about, _id, age, gender} = connection;
         return(
           <div className="bg-base-300 flex p-4 m-4 w-1/2 mx-auto rounded" key={_id}>
             <div>
-              <img src={photoUrl} alt="user-photo" className="h-20 w-20 rounded-full"/>
+              <figure>
+                <img src={photoUrl} alt="user-photo" className="h-20 w-20 rounded-full"/>
+              </figure>
             </div>
             <div className="text-left mx-4">
               <h1>{firstName +" "+lastName}</h1>

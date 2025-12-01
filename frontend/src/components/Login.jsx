@@ -48,6 +48,7 @@ const Login = () => {
     }
   }
   return (
+    <>
     <div className="card bg-base-300 w-96 mx-auto rounded-lg shadow-lg my-24">
   <div className="card-body items-center">
     <h2 className="card-title">{isSignInForm ? "Login" : "Sign Up"}</h2>
@@ -90,6 +91,8 @@ const Login = () => {
     <p className="m-auto cursor-pointer" onClick={() => setIsSignInForm(value => !value)}>{isSignInForm ? "New User, Please Sign UP" : "Existing User, Please Login in"}</p>
   </div>
 </div>
+    </>
+    
   )
 }
 
