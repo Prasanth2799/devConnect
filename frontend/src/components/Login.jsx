@@ -5,8 +5,8 @@ import {useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addUser } from "../store/userSlice";
 const Login = () => {
-  const[emailId, setEmailId] = useState("prasanth2@gmail.com");
-  const[password, setPassword] = useState("Prasanth@123");
+  const[emailId, setEmailId] = useState("");
+  const[password, setPassword] = useState("");
   const[firstName, setFirstName] = useState("");
   const[lastName, setLastName] = useState("");
   const[isSignInForm, setIsSignInForm] = useState(false);
