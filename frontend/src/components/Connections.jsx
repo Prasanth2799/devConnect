@@ -23,17 +23,20 @@ const Connections = () => {
     <div className="my-10 text-center">
       <h1>Connections</h1>
       {userConnections?.map((connection) => {
-        const {firstName, lastName, photoUrl, about, _id, age, gender} = connection;
+        const {firstName, lastName, photoUrl, about, _id, age, skills, gender} = connection;
         return(
-          <div className="bg-base-300 flex p-4 m-4 w-1/2 mx-auto rounded" key={_id}>
+          <div className="bg-base-300 md:flex md:flex-row flex items-center p-4 m-4 md:w-[400px] w-full mx-auto rounded" key={_id}>
             <div>
-              <figure>
+              <div className="my-auto md:text-center mb-2 md:mb-0">
                 <img src={photoUrl} alt="user-photo" className="h-20 w-20 rounded-full"/>
-              </figure>
+              </div>
             </div>
             <div className="text-left mx-4">
-              <h1>{firstName +" "+lastName}</h1>
+              <h1 className="font-bold">{firstName +" "+lastName}</h1>
               <p>{age && gender && <p>{age + " "+gender}</p> || gender && <p>{gender}</p> || age && <p>{age}</p>}</p>
+              <span className="font-extralight">{about}</span>
+              <br />
+              <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>
             </div>
           </div>
         )

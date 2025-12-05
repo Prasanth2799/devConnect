@@ -2,9 +2,9 @@ import axios from "axios";
 import {BASE_URL} from "../utils/constants";
 import {useDispatch} from "react-redux";
 import { removeUserFromFeed } from "../store/feedSlice";
-const UserCard = ({userData}) => {
+const UserCard = ({userData, showButtons=true}) => {
   const dispatch = useDispatch();
-  const {firstName, lastName, photoUrl, age, skills, gender, _id} = userData;
+  const {firstName, lastName, photoUrl, age, about, skills, gender, _id} = userData;
   const handleSendRequest = async (status, userId) => {
     try{
       const res = await axios.post(BASE_URL+"/request/send/"+status+"/"+userId, {}, {withCredentials: true});
@@ -26,14 +26,16 @@ const UserCard = ({userData}) => {
   <div className="card-body">
     {firstName && lastName ?<h2 className="card-title">{firstName+" "+lastName}</h2> : <h2 className="card-title">{firstName}</h2>}
      {age && gender && <p>{age + " "+gender}</p> || gender && <p>{gender}</p> || age && <p>{age}</p>}
-    <div className="card-actions justify-between">
+     <span>{about}</span>
+     <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>
+    {showButtons && <div className="card-actions justify-between">
       <button className="btn btn-secondary" 
       onClick={() => handleSendRequest("ignored", _id)}
       >Ignored</button>
       <button className="btn btn-primary"
       onClick={() => handleSendRequest("interested", _id)}
       >Interested</button>
-    </div>
+    </div>}
   </div>
 </div>
     </>

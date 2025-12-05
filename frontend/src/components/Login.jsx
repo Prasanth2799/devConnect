@@ -83,12 +83,12 @@ const Login = () => {
           </>
         ) : 
         (
-          <>{isSignInForm ? "Login In" : "Sign Up"}</>
+          <>{isSignInForm ? "Log In" : "Sign Up"}</>
         )
         }
       </button>
     </div>
-    <p className="m-auto cursor-pointer" onClick={() => setIsSignInForm(value => !value)}>{isSignInForm ? "New User, Please Sign UP" : "Existing User, Please Login in"}</p>
+    <p className="m-auto cursor-pointer" onClick={() => setIsSignInForm(value => !value)}>{isSignInForm ? "Don't have an account? Sign UP" : "Have an account? Log In"}</p>
   </div>
 </div>
     </>

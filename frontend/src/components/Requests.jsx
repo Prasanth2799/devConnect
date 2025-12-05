@@ -29,18 +29,21 @@ const Requests = () => {
   if(!requests) return;
   if(requests.length === 0) return <h1 className="p-4 text-center">No Requests</h1>
   return (
-    <div className="my-10 text-center">
+    <div className="my-10 text-center mb-36">
       <h1>Requests</h1>
       {requests?.map((request) => {
-        const {firstName, lastName, photoUrl, about, _id, age, gender} = request?.fromUserId;
+        const {firstName, lastName, photoUrl, about, _id, skills, age, gender} = request?.fromUserId;
         return(
-          <div className="bg-base-300 flex p-4 m-4 w-1/2 mx-auto rounded" key={_id}>
-            <div>
+          <div className="bg-base-300 flex p-4 m-4 w-[400px] mx-auto rounded" key={_id}>
+            <div className="my-auto">
               <img src={photoUrl} alt="user-photo" className="h-16 rounded-4xl"/>
             </div>
             <div className="text-left mx-4">
               <h1>{firstName +" "+lastName}</h1>
               <p>{age && gender && <p>{age + " "+gender}</p> || gender && <p>{gender}</p> || age && <p>{age}</p>}</p>
+              <span className="font-extralight">{about}</span>
+              <br />
+              <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>
               <div className="mt-2">
                 <button className="btn btn-error text-white mr-2"
                 onClick={() => reviewRequest("rejected", request?._id)}

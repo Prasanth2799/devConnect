@@ -33,9 +33,9 @@ const EditProfile = ({user}) => {
     }
   }
   return (
-    <div className="flex justify-center my-10">
-        <div className="flex justify-center mx-10">
-            <div className="card bg-base-300 w-80 mr-2 shadow-xl">
+    <div className="flex justify-center my-10 pb-24">
+        <div className="flex flex-col md:flex-row justify-center mx-10">
+            <div className="card bg-base-300  md:w-80 w-full md:mr-2 mb-2 shadow-xl">
   <div className="card-body items-center">
     <h2 className="card-title">Edit Profile</h2>
     <label className="floating-label">
@@ -72,7 +72,7 @@ const EditProfile = ({user}) => {
     </div>
   </div>
             </div>
-            <UserCard userData={{firstName, lastName, photoUrl, age, gender, skills, about}}/>
+            <UserCard userData={{firstName, lastName, photoUrl, age, gender, skills, about}} showButtons={false}/>
         </div>
         {showToast && <div className="toast toast-top toast-center">
   <div className="alert alert-success">
