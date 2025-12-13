@@ -27,7 +27,7 @@ const UserCard = ({userData, showButtons=true}) => {
     {firstName && lastName ?<h2 className="card-title">{firstName+" "+lastName}</h2> : <h2 className="card-title">{firstName}</h2>}
      {age && gender && <p>{age + " "+gender}</p> || gender && <p>{gender}</p> || age && <p>{age}</p>}
      <span>{about}</span>
-     <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>
+     {skills && <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>}
     {showButtons && <div className="card-actions justify-between">
       <button className="btn btn-secondary" 
       onClick={() => handleSendRequest("ignored", _id)}
