@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {createSocketConnection} from "../utils/socket"
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
@@ -51,10 +51,26 @@ const sendMessage = () => {
     })
     setNewMessage("")
 }
+const chatRef = useRef(null);
+useEffect(() => {
+  const el = chatRef.current;
+  if (!el) return;
+
+  const isNearBottom =
+    el.scrollHeight - el.scrollTop - el.clientHeight < 100;
+
+  if (isNearBottom) {
+    el.scrollTop = el.scrollHeight;
+  }
+}, [messages]);
+
   return (
     <div className="w-full md:w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
         <h1 className="border-b border-gray-600 p-2">Chat</h1>
-        <div className="flex-1 overflow-scroll p-5">
+        <div
+  ref={chatRef}
+  className="flex-1 overflow-y-auto p-5">
+
             {messages.map((msg, index) => {
                 return (
                     <div key={index}>

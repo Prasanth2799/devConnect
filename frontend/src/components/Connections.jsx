@@ -39,7 +39,7 @@ const Connections = () => {
               <br />
               <span className="font-extralight"><span className="font-semibold">Skills: </span>{skills}</span>
             </div>
-            <Link to={"/chat/"+_id}><button className="btn btn-accent mx-auto">Chat</button></Link>
+            <Link to={"/chat/"+_id}><button className="btn btn-accent ml-20 md:ml-32">Chat</button></Link>
           </div>
         )
       })}
