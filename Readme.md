@@ -1,50 +1,53 @@
 # 🚀 DevConnect
 
-> A modern MERN-stack social networking platform that enables developers to connect, collaborate, and grow together.
+> **A production-ready MERN Stack platform that enables developers to connect, collaborate, and grow together.**
 
-DevConnect is a full-stack web application where developers can create professional profiles, connect with like-minded people based on their skills, chat, and expand their professional network. The platform is designed with scalability, security, and performance in mind while following production-level development practices.
+DevConnect is a full-stack social networking platform built specifically for developers. Users can create professional profiles, discover developers based on their skills, send connection requests, chat in real time, and leverage AI to generate professional bios.
+
+The project is built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)** and follows industry-standard backend architecture with **Mongoose**, secure JWT authentication, and scalable REST APIs.
 
 ---
 
-## ✨ Features
+# 🌟 Features
 
 * 🔐 Secure User Authentication (JWT + Cookies)
-* 👤 User Registration & Login
-* 📝 Developer Profile Management
-* 🤝 Connect with Developers
-* 💬 Real-time Chat 
-* 🤖 AI-powered Bio Generation based on User Skills
-* 🔍 Search & Discover Developers
-* ❤️ Send & Manage Connection Requests
-* 🛡️ Password Encryption using Bcrypt
-* 🌐 RESTful API Architecture
-* ⚡ Optimized Backend using Express & MongoDB
+* 🔒 Password Encryption using Bcrypt
+* 👤 User Registration, Login & Logout
+* ✏️ Profile Management
+* 🤝 Send & Manage Connection Requests
+* 👥 Developer Feed
+* 💬 Real-Time Chat
+* 🤖 AI-Powered Bio Generator
+* 🔍 Discover Developers by Skills
+* 🛡️ Protected APIs using Authentication Middleware
+* ⚡ RESTful API Architecture
+* 📦 Scalable Backend with MongoDB & Mongoose
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠 Tech Stack
 
-### Frontend
+## Frontend
 
 * React.js
 * Redux Toolkit
 * Tailwind CSS
 * Axios
 
-### Backend
+## Backend
 
 * Node.js
 * Express.js
 * MongoDB
 * Mongoose
 
-### Authentication & Security
+## Authentication & Security
 
 * JWT (JSON Web Token)
 * Bcrypt
 * Cookie Parser
 
-### Deployment
+## Deployment
 
 * AWS EC2
 * Ubuntu Server
@@ -55,75 +58,134 @@ DevConnect is a full-stack web application where developers can create professio
 
 ---
 
-## 📂 Backend Features
+# 🚀 API Endpoints
 
-* User Authentication
-* Secure Login & Registration
-* JWT-based Authorization
-* Password Hashing
-* Cookie-based Session Handling
-* CRUD APIs
-* Request Validation
-* MongoDB Schema Design
-* Error Handling Middleware
-* Protected Routes
+## Authentication
 
----
+| Method | Endpoint  | Description                   |
+| ------ | --------- | ----------------------------- |
+| POST   | `/signup` | Register a new user           |
+| POST   | `/login`  | Authenticate user             |
+| POST   | `/logout` | Logout the authenticated user |
 
+### Profile
 
+| Method | Endpoint                 | Description                     |
+| ------ | ------------------------ | ------------------------------- |
+| GET    | `/profile/view`          | View logged-in user profile     |
+| PATCH  | `/profile/edit`          | Update profile details          |
+| POST   | `/profile/ai-suggestion` | Generate AI-powered profile bio |
 
-## 🏗️ Project Architecture
+### Connection Requests
 
-* Modular Folder Structure
-* MVC Architecture
-* REST API Design
-* Middleware-based Authentication
-* MongoDB Data Modeling
-* Environment-based Configuration
-* Secure Cookie Management
+| Method | Endpoint                             | Description                           |
+| ------ | ------------------------------------ | ------------------------------------- |
+| POST   | `/request/send/:status/:toUserId`    | Send a connection request             |
+| POST   | `/request/review/:status/:requestId` | Accept or reject a connection request |
 
----
+### User
 
-## 🚀 Development Journey
+| Method | Endpoint                  | Description                        |
+| ------ | ------------------------- | ---------------------------------- |
+| GET    | `/user/requests/received` | Fetch received connection requests |
+| GET    | `/user/connections`       | Fetch all accepted connections     |
+| GET    | `/feed`                   | Retrieve the developer feed        |
 
-* Initialized Git Repository
-* Built Express Server
-* Configured Nodemon
-* Designed MongoDB Schemas using Mongoose
-* Implemented CRUD APIs
-* Added Input Validations
-* Integrated JWT Authentication
-* Secured Passwords using Bcrypt
-* Implemented Cookie-based Authentication
-* Tested APIs using Postman
-* Built Protected Routes
+### Chat
+
+| Method | Endpoint              | Description                                      |
+| ------ | --------------------- | ------------------------------------------------ |
+| GET    | `/chat/:targetUserId` | Retrieve chat history with a connected developer |
 
 ---
 
-## 🔮 Upcoming Features
+# 🔐 Authentication Flow
 
-* Real-time Chat using Socket.io
-* AI-powered Skill Recommendations
-* Resume Analysis using AI
+* User Registration
+* Secure Password Hashing using Bcrypt
+* JWT Token Generation
+* Cookie-Based Authentication
+* Protected Routes using Middleware
+* Authorization for Secure API Access
+
+---
+
+# 🏗 Backend Highlights
+
+* Built scalable REST APIs
+* MongoDB schema design using Mongoose
+* JWT-based Authentication & Authorization
+* Password Encryption using Bcrypt
+* Cookie-based Session Management
+* Input Validation
+* Centralized Error Handling
+* Reusable Middleware
+* RESTful API Design
+* CRUD Operations
+* API Testing using Postman
+
+---
+
+# 🤖 AI Features
+
+### AI Profile Bio Generator
+
+Generate professional developer bios automatically based on:
+
+* Skills
+* Experience
+* Tech Stack
+* Career Goals
+
+This feature helps developers create attractive and professional profiles within seconds.
+
+---
+
+# ☁ Deployment
+
+The application is deployed using production-grade cloud infrastructure.
+
+* AWS EC2
+* Ubuntu Server
+* Nginx Reverse Proxy
+* Cloudflare DNS
+* GoDaddy Domain
+* SSL Security
+
+---
+
+# 🚀 Future Enhancements
+
 * Video Calling
-* Notifications
+* Push Notifications
 * Email Verification
 * Forgot Password
-* Admin Dashboard
+* Resume Analysis using AI
+* AI Skill Recommendations
+* Google & GitHub OAuth Login
 * CI/CD Pipeline
-* Docker & Kubernetes Deployment
+* Docker Containerization
+* Kubernetes Deployment
 * Microservices Architecture
 
 ---
 
-## 🎯 Project Goal
+# 🎯 Project Goal
 
-The goal of DevConnect is to provide a platform where developers can showcase their skills, build meaningful professional connections, collaborate on projects, and leverage AI to enhance their profiles and networking experience.
+DevConnect aims to provide developers with a modern platform where they can showcase their technical expertise, build meaningful professional connections, collaborate on projects, communicate seamlessly, and leverage AI to enhance their networking experience.
 
 ---
 
-## ⭐ If you like this project
+# 👨‍💻 Author
 
-Give it a **⭐ Star** and feel free to contribute or share your feedback!
+**Lenka Prasanth Kumar**
+
+GitHub: **https://github.com/Prasanth2799**
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a **⭐ Star**. Your support motivates me to build more production-ready applications and contribute to the developer community.
 
 **Built with ❤️ using the MERN Stack**
